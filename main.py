@@ -18,7 +18,7 @@ def maxElemAverage(arr):
             index = j
         j += 1
 
-    print "Maximum number - ", maximum, " , with index -- ", index
+    print ("Maximum number - ", maximum, " , with index -- ", index)
     return index
 
 
@@ -35,7 +35,7 @@ def minElemAverage(arr):
             index = j
         j += 1
 
-    print "Average - ", s, ", minimum number - ", minimum, " , with index -- ", index
+    print ("Average - ", s, ", minimum number - ", minimum, " , with index -- ", index)
     return index
 
 
@@ -52,7 +52,7 @@ def sortElem(arr):
     for i in range(l + 1, r):
         newArray.append(arr[i])
 
-    print "Elements in between (with reverse sort) - ", newArray
+    print ("Elements in between (with reverse sort) - ", newArray)
 
     newArray.sort(reverse=True)
 
@@ -61,12 +61,12 @@ def sortElem(arr):
         arr[i] = newArray[j]
         j += 1
 
-    print "Result : ", arr
+    print ("Result : ", arr)
 
 
-def menu():
-    print "\n Choose : \n '1' - create a new array  \n '2' -  create random array \n '3' - see present array"
-    print " '4' - go to the task \n '5' - exit menu "
+def printOption():
+    print ("\n Choose : \n '1' - create a new array  \n '2' -  create random array \n '3' - see present array")
+    print (" '4' - go to the task \n '5' - exit menu ")
 
     while True:
         try:
@@ -76,14 +76,14 @@ def menu():
             else:
                 return choice
         except Exception as e:
-            print e
+            print (e)
 
 
 def main():
     arr = []
     arrSize = 0
     while True:
-        choice = menu()
+        choice = printOption()
 
         if choice == 1:
             try:
@@ -95,7 +95,7 @@ def main():
                     for i in range(0, arrSize):
                         arr.append(int(input("Enter element : ")))
             except Exception as e:
-                print e
+                print (e)
 
         elif choice == 2:
             try:
@@ -108,16 +108,16 @@ def main():
                     for i in range(0, arrSize):
                         arr.append(random.randint(loEnd, hiEnd))
             except Exception as e:
-                print e
+                print (e)
 
         elif choice == 3:
             try:
                 if len(arr) == 0:
                     raise Exception("No array ")
                 else:
-                    print "Your array : ", arr
+                    print ("Your array : ", arr)
             except Exception as e:
-                print e
+                print (e)
 
         elif choice == 4:
             try:
@@ -126,7 +126,7 @@ def main():
                 else:
                     sortElem(arr)
             except Exception as e:
-                print e
+                print (e)
 
         else:
             break
