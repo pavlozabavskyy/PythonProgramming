@@ -18,7 +18,7 @@ def maxElemAverage(arr):
             index = j
         j += 1
 
-    print "Maximum number - ", maximum, " , with index -- ", index
+    print ("Maximum number - ", maximum, " , with index -- ", index)
     return index
 
 
@@ -35,7 +35,7 @@ def minElemAverage(arr):
             index = j
         j += 1
 
-    print "Average - ", s, ", minimum number - ", minimum, " , with index -- ", index
+    print ("Average - ", s, ", minimum number - ", minimum, " , with index -- ", index)
     return index
 
 
@@ -52,7 +52,7 @@ def sortElem(arr):
     for i in range(l + 1, r):
         newArray.append(arr[i])
 
-    print "Elements in between (with reverse sort) - ", newArray
+    print ("Elements in between (with reverse sort) - ", newArray)
 
     newArray.sort(reverse=True)
 
@@ -61,7 +61,7 @@ def sortElem(arr):
         arr[i] = newArray[j]
         j += 1
 
-    print "Result : ", arr
+    print ("Result : ", arr)
     return arr
 
 
@@ -74,7 +74,7 @@ def binarySearch(arr, number):
         mid = (low + high) // 2
         numOfOper += 1
 
-        print numOfOper, " middle index - ", mid
+        print (numOfOper, " middle index - ", mid)
 
         if number < arr[mid]:
             high = mid - 1
@@ -84,7 +84,7 @@ def binarySearch(arr, number):
             idSearch.append(mid)
             break
     else:
-        print "No number"
+        print ("No number")
 
     if idSearch[0] != len(arr) - 1:
         i = 1
@@ -100,13 +100,13 @@ def binarySearch(arr, number):
 
     idSearch.sort()
 
-    print "ID : ", idSearch
-    print "Number of operations - ", numOfOper
+    print ("ID : ", idSearch)
+    print ("Number of operations - ", numOfOper)
 
 
 def printOptions():
-    print "\n Choose : \n '1' - create a new array  \n '2' -  create random array \n '3' - see present array"
-    print " '4' - go to the task  \n '5' - practice task \n '6' - exit menu "
+    print ("\n Choose : \n '1' - create a new array  \n '2' -  create random array \n '3' - see present array")
+    print (" '4' - go to the task  \n '5' - practice task \n '6' - exit menu ")
 
     while True:
         try:
@@ -116,7 +116,7 @@ def printOptions():
             else:
                 return choice
         except Exception as e:
-            print e
+            print (e)
 
 
 def main():
@@ -135,7 +135,7 @@ def main():
                     for i in range(0, arrSize):
                         arr.append(int(input("Enter element : ")))
             except Exception as e:
-                print e
+                print (e)
 
         elif choice == 2:
             try:
@@ -148,16 +148,16 @@ def main():
                     for i in range(0, arrSize):
                         arr.append(random.randint(loEnd, hiEnd))
             except Exception as e:
-                print e
+                print (e)
 
         elif choice == 3:
             try:
                 if len(arr) == 0:
                     raise Exception("No array ")
                 else:
-                    print "Your array : ", arr
+                    print ("Your array : ", arr)
             except Exception as e:
-                print e
+                print (e)
 
         elif choice == 4:
             try:
@@ -166,7 +166,7 @@ def main():
                 else:
                     sortElem(arr)
             except Exception as e:
-                print e
+                print (e)
 
         elif choice == 5:
             try:
@@ -179,7 +179,7 @@ def main():
                     binarySearch(newArray, searchNumber)
 
             except Exception as e:
-                print e
+                print (e)
 
         else:
             break
