@@ -64,11 +64,25 @@ def sortElem(arr):
     print ("Result : ", arr)
     return arr
 
+class Node:
+    def __init__(self, obj, index):
+        self.obj = obj
+        self.index = index
+
+def sortNode(object):
+    return object.obj
 
 def binarySearch(arr, number):
-    arr.sort()
-    idSearch, numOfOper = [], 0
-    low , high = 0, len(arr) - 1
+    newArr = []
+
+    for i in range(0, len(arr)):
+        temp = Node(arr[i], i)
+        newArr.append(temp)
+
+    newArr.sort(key=sortNode)
+
+    idSearch, numOfOper, id = [], 0, 0
+    low, high = 0, len(arr) - 1
 
     while low <= high:
         mid = (low + high) // 2
@@ -76,26 +90,27 @@ def binarySearch(arr, number):
 
         print (numOfOper, " middle index - ", mid)
 
-        if number < arr[mid]:
+        if number < newArr[mid].obj:
             high = mid - 1
-        elif number > arr[mid]:
+        elif number > newArr[mid].obj:
             low = mid + 1
-        elif number == arr[mid]:
-            idSearch.append(mid)
+        elif number == newArr[mid].obj:
+            id = mid
+            idSearch.append(newArr[mid].index)
             break
     else:
         print ("No number")
 
-    if idSearch[0] != len(arr) - 1:
+    if id != len(arr) - 1:
         i = 1
-        while number == arr[idSearch[0] + i]:
-            idSearch.append(idSearch[0] + i)
+        while number == newArr[id + i].obj:
+            idSearch.append(newArr[id - i].index)
             i += 1
 
-    if idSearch[0] != 0:
+    if id != 0:
         i = 1
-        while number == arr[idSearch[0] - i]:
-            idSearch.append(idSearch[0] - i)
+        while number == newArr[id - i].obj:
+            idSearch.append(newArr[id - i].index)
             i += 1
 
     idSearch.sort()
@@ -180,9 +195,7 @@ def main():
 
             except Exception as e:
                 print (e)
-
         else:
             break
-
 
 main()
