@@ -69,9 +69,6 @@ class Node:
         self.obj = obj
         self.index = index
 
-def sortNode(object):
-    return object.obj
-
 def binarySearch(arr, number):
     newArr = []
 
@@ -79,7 +76,7 @@ def binarySearch(arr, number):
         temp = Node(arr[i], i)
         newArr.append(temp)
 
-    newArr.sort(key=sortNode)
+    newArr.sort(key=lambda x: x.obj)
 
     idSearch, numOfOper, id = [], 0, 0
     low, high = 0, len(arr) - 1
@@ -115,8 +112,8 @@ def binarySearch(arr, number):
 
     idSearch.sort()
 
-    print ("ID : ", idSearch)
     print ("Number of operations - ", numOfOper)
+    return idSearch
 
 
 def printOptions():
@@ -191,7 +188,8 @@ def main():
                     newArray = sortElem(arr)
                     searchNumber = int(input("Enter search number - "))
 
-                    binarySearch(newArray, searchNumber)
+                    idSearch = binarySearch(newArray, searchNumber)
+                    print ("ID : ", idSearch)
 
             except Exception as e:
                 print (e)
