@@ -1,4 +1,4 @@
-import random
+import random as rn
 
 
 def average(arr):
@@ -115,6 +115,15 @@ def binarySearch(arr, number):
     print ("Number of operations - ", numOfOper)
     return idSearch
 
+def validationInt(name):
+    while True:
+        try:
+            n = int(input(name))
+            break
+        except ValueError:
+            print('Incorrect input')
+    return n
+
 
 def printOptions():
     print ("\n Choose : \n '1' - create a new array  \n '2' -  create random array \n '3' - see present array")
@@ -122,7 +131,7 @@ def printOptions():
 
     while True:
         try:
-            choice = int(input("Your choice - "))
+            choice = validationInt("Your choice - ")
             if choice < 1 or choice > 6:
                 raise Exception("Incorrect input")
             else:
@@ -139,26 +148,26 @@ def main():
 
         if choice == 1:
             try:
-                arrSize = int(input("Enter the size of a new array - "))
+                arrSize = validationInt("Enter the size of a new array - ")
                 if arrSize < 0:
                     raise Exception("Incorrect input")
                 else:
                     arr = []
                     for i in range(0, arrSize):
-                        arr.append(int(input("Enter element : ")))
+                        arr.append(validationInt("Enter element : "))
             except Exception as e:
                 print (e)
 
         elif choice == 2:
             try:
-                arrSize = int(input("Enter the size of a new array - "))
-                loEnd = int(input("Enter the lower end of random numbers - "))
-                hiEnd = int(input("Enter the higher end of random numbers - "))
+                arrSize = validationInt("Enter the size of a new array - ")
+                loEnd = validationInt("Enter the lower end of random numbers - ")
+                hiEnd = validationInt("Enter the higher end of random numbers - ")
                 if arrSize < 0 or hiEnd < loEnd:
                     raise Exception("Incorrect input")
                 else:
                     for i in range(0, arrSize):
-                        arr.append(random.randint(loEnd, hiEnd))
+                        arr.append(rn.randint(loEnd, hiEnd))
             except Exception as e:
                 print (e)
 
@@ -186,7 +195,7 @@ def main():
                     raise Exception("No array ")
                 else:
                     newArray = sortElem(arr)
-                    searchNumber = int(input("Enter search number - "))
+                    searchNumber = validationInt("Enter search number - ")
 
                     idSearch = binarySearch(newArray, searchNumber)
                     print ("ID : ", idSearch)
