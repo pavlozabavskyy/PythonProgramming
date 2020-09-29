@@ -3,12 +3,21 @@ import numpy as np
 def matrixN(n):
     matrix = np.zeros( (n, n) )
 
-    matrix[0][0:n] = 1      #First row     == 1
-    matrix[:,0] = 1         #First column  == 1
-    matrix[-1][0:n] = 1     #Last row      == 1
-    matrix[:,-1] = 1        #Last column   == 1
+    matrix[0][0:n]  = 1      #First row     == 1
+    matrix[:,0]     = 1      #First column  == 1
+    matrix[-1][0:n] = 1      #Last row      == 1
+    matrix[:,-1]    = 1      #Last column   == 1
 
     print(matrix)
+
+def validationInt(name):
+    while True:
+        try:
+            n = int(input(name))
+            break
+        except ValueError:
+            print('Incorrect input')
+    return n
 
 
 def Options():
@@ -16,7 +25,7 @@ def Options():
 
     while True:
         try:
-            choice = int(input("Your choise - "))
+            choice = validationInt("Your choise - ")
             if choice < 1 or choice > 2:
                 raise Exception("Incorrect input")
             else:
@@ -31,7 +40,7 @@ def main():
 
         if choice == 1:
             try:
-                n = int(input("Enter N: "))
+                n = validationInt("Enter N: ")
                 if n <= 0:
                     raise Exception("Incorrect N ")
                 else:
