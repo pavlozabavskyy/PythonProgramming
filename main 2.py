@@ -39,26 +39,18 @@ def minElemAverage(arr):
     return index
 
 
-def sortElem(arr):
-    newArray = []
-
-    l, r = minElemAverage(arr), maxElemAverage(arr)
+def progTask(arr):
+    l, r, j = minElemAverage(arr), maxElemAverage(arr), 0
 
     if r < l:
         temp = l
         l = r
         r = temp
 
-    for i in range(l + 1, r):
-        newArray.append(arr[i])
-
-    print ("Elements in between (with reverse sort) - ", newArray)
-
-    newArray.sort(reverse=True)
-
-    j = 0
-    for i in range(l + 1, r):
-        arr[i] = newArray[j]
+    for i in range((r-l)//2):
+        temp = arr[l+j]
+        arr[l + j] = arr[r - j]
+        arr[r - j] = temp
         j += 1
 
     print ("Result : ", arr)
@@ -185,7 +177,7 @@ def main():
                 if len(arr) == 0:
                     raise Exception("No array ")
                 else:
-                    sortElem(arr)
+                    progTask(arr)
             except Exception as e:
                 print (e)
 
@@ -194,7 +186,7 @@ def main():
                 if len(arr) == 0:
                     raise Exception("No array ")
                 else:
-                    newArray = sortElem(arr)
+                    newArray = progTask(arr)
                     searchNumber = validationInt("Enter search number - ")
 
                     idSearch = binarySearch(newArray, searchNumber)
