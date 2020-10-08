@@ -6,11 +6,22 @@ import classCollection as CC
 
 def newObjAddress():
     address_line = valid.Validation.enterStr('enter address_line ')
-    postal_code = valid.Validation.enterInteger('enter postal_code ')
+    while True:
+        postal_code = valid.Validation.enterInteger('enter postal_code ')
+        if valid.Validation.lenghtValue(postal_code, 5):
+            break
     country = valid.Validation.enterStr('enter country ')
     city = valid.Validation.enterStr('enter city ')
-    fax_number = valid.Validation.enterStr('enter fax_number ')
-    phone_number = valid.Validation.enterStr('enter phone_number ')
+    while True:
+        fax_number = valid.Validation.enterStr('enter fax_number ')
+        if valid.Validation.isdigitValid(fax_number):
+            break
+
+    while True:
+        phone_number = valid.Validation.enterStr('enter phone_number ')
+        if valid.Validation.isdigitValid(phone_number):
+            break
+
 
     ad = CA.Address(address_line, postal_code, country, city, fax_number, phone_number)
     #address = f'{address_line} {postal_code} {country} {city} {fax_number} {phone_number}'
@@ -124,8 +135,8 @@ def main():
             reWriteFile(collect)
 
         elif choice == 4:
-            collect = sortCollection(collect)
-            reWriteFile(collect)
+            value = valid.Validation.enterStr("enter search elem - ")
+            collect.search(value)
 
         elif choice == 5:
             choi = valid.Validation.validIntLimit('enter index - ', 0, len(collect))

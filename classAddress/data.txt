@@ -1,5 +1,7 @@
-lomsd 98763 vcbx sdfs 28932 452334
-Adren 10112 UK London 789793 123123
+Brodway 45345 opit uirute 34542 5343425
+Kedrova 22112 UK London 789793 123123
 address 12345 Ukraine Lviv 988989 676756
 addr 54321 Ukraine Kiev 100000 200000
 lomsd 98763 vcbx sdfs 28932 452334
+oioer 45345 opit uirute 34542 5343425
+newAddress 57564 newCountry newCity 738924 676432
