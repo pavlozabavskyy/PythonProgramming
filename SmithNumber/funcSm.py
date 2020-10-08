@@ -29,8 +29,12 @@ def isSmith(n):
     return sumOfNum == sumD(n)
 
 
-def nextNum(current = 1):
-    current+=1
-    while not isSmith(current):
-        current +=1
-    return current
+def funcNum(n = 1):
+    i, current = 0, 3
+    list = []
+    while i < n:
+        if isSmith(current):
+            list.append(current)
+            i +=1
+        current+=1
+    return list

@@ -34,30 +34,25 @@ def Optione(arr):
 
 def main():
     selectMethod = ['1 - func ', '2 - iterator ', '3 - generator ', '4 - exit ']
-    modeArr = ['1 - next ', '2 - exit ']
+    #modeArr = ['1 - next ', '2 - exit ']
     while True:
         choice = Optione(selectMethod)
         if choice == 1:
-            current = func.nextNum()
-            print(current)
-            m = Optione(modeArr)
-            while m != 2:
-                temp = current
-                current = func.nextNum(temp)
-                print(current)
-                m = Optione(modeArr)
-
+            n = IntValid("Enter n ")
+            list = func.funcNum(n)
+            print(list)
 
         elif choice == 2:
             itSm = iter.SmithIter()
-            m = Optione(modeArr)
-            while m != 2:
-                print(next(itSm))
-                m = Optione(modeArr)
+            n = IntValid("Enter n ")
+            l = []
+            for i in range(n):
+                l.append(next(itSm))
+            print(l)
 
         elif choice == 3:
-            finish = IntValid("Enter ")
-            g = gen.generate(300)
+            finish = IntValid("Enter n ")
+            g = gen.generate(finish)
             for i in g:
                 print(i)
 
