@@ -1,9 +1,8 @@
-import validation as valid
+from validation import Validation as v
 
 class Address:
-    __postal_code_lenght = 5
 
-    def __init__(self, address_line = 'address_line', postal_code = 10000, country = 'country', city = 'city', fax_number = 100000, phone_number = 100000):
+    def __init__(self, address_line = 'address_line', postal_code = 10000, country = 'country', city = 'city', fax_number = '+3800', phone_number = '+3800'):
         self.address_line = address_line
         self.postal_code = postal_code
         self.country = country
@@ -13,10 +12,15 @@ class Address:
 
 
     def __str__(self):
-        return f'\n!-----------------------!\nID- {self.ID}, \naddress line - {self.address_line} street, \npostal code - {self.postal_code}, \ncountry - {self.country}, \ncity - {self.city}, \nfax number - {self.fax_number}, \nphone number - {self.phone_number} \n!-----------------------!\n'
+        result = '\n!-------------------------!'
+        for i in self.getAttr():
+            result += '\n'+ str(i)+ ' - ' + str(getattr(self, str(i)))
+        result += '\n!-------------------------!'
+        return result
+
 
     def __repr__(self):
-        return f'\n!-----------------------!\nID- {self.ID}, \naddress line - {self.address_line} street, \npostal code - {self.postal_code}, \ncountry - {self.country}, \ncity - {self.city}, \nfax number - {self.fax_number}, \nphone number - {self.phone_number} \n!-----------------------!\n'
+        return self.__str__()
 
 
     @property
@@ -47,72 +51,84 @@ class Address:
     def ID(self):
         return id(self)
 
-    @property
-    def strAddressWithoutId(self):
-        return f'{self.address_line} {self.postal_code} {self.country} {self.city} {self.fax_number} {self.phone_number}\n'
 
-    @property
+    def getAttr(self):
+        return [name for name, value in vars(Address).items() if isinstance(value, property)]
+
+
+    def strAddressWithoutId(self):
+        result = ''
+        for i in self.getAttr():
+            result += str(getattr(self, str(i))) + ' '
+        return result
+
     def strAddressWithId(self):
         return f'{self.ID} {self.strAddressWithoutId}'
 
 
-
-
     @address_line.setter
     def address_line(self, value):
-        '''Set address_line'''
+        '''Set address_line. type, symbol'''
+        try:
+            value = v.symbolValidate(value, 'Address line')
+        except Exception as e:
+            print(e)
+            value = 'None'
         self._address_line = value
+
 
     @postal_code.setter
     def postal_code(self, value):
-        '''Set postal_code. checking lenght'''
-        while True:
-            result = valid.Validation.lenghtValue(value, self.__postal_code_lenght)
-            if not result:
-                self._postal_code = '00000'
-                print(f'object with postal code: {value}')
-                break
-            result = valid.Validation.integerType(value)
-            if not result:
-                self._postal_code = '00000'
-                print(f'object with postal code: {value}')
-                break
-            else:
-                self._postal_code = value
-                break
+        '''Set postal_code. lenght, type'''
+        try:
+            value = v.intValidate(value, 'Postal code')
+            value = v.lenghtValueValidate(value, 5, 'Postal code')
+        except Exception as e:
+            print(e)
+            value = 0
+        self._postal_code = value
+
+
 
     @country.setter
     def country(self, value):
-        '''Set country'''
-        check = valid.Validation.isalphaValid(value)
-        if not check:
-            self._country = 'country'
-        else:
-            self._country = value
+        '''Set country. type, symbol'''
+        try:
+            value = v.symbolValidate(value, 'Country')
+        except Exception as e:
+            print(e)
+            value = 'None'
+        self._country = value
+
 
     @city.setter
     def city(self, value):
-        '''Set city'''
-        check = valid.Validation.isalphaValid(value)
-        if not check:
-            self._city = 'city'
-        else:
-            self._city = value
+        '''Set city. type, symbol'''
+        try:
+            value = v.symbolValidate(value, 'City')
+        except Exception as e:
+            print(e)
+            value = 'None'
+        self._city = value
+
 
     @fax_number.setter
     def fax_number(self, value):
-        '''Set fax_number'''
-        check = valid.Validation.isdigitValid(str(value))
-        if not check:
-            self._fax_number = "0"
-        else:
-            self._fax_number = str(value)
+        '''Set fax_number. type, symbol and +380'''
+        try:
+            value = v.numberValidate(value, 'fax_number')
+        except Exception as e:
+            print(e)
+            value = 'None'
+        self._fax_number = value
+
 
     @phone_number.setter
     def phone_number(self, value):
-        '''Set phone number'''
-        check = valid.Validation.isdigitValid(value)
-        if not check:
-            self._phone_number = "0"
-        else:
-            self._phone_number = value
+        '''Set phone number. type, symbol and +380'''
+        try:
+            value = v.numberValidate(value, 'phone_number')
+        except Exception as e:
+            print(e)
+            value = 'None'
+        self._phone_number = value
