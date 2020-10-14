@@ -1,0 +1,54 @@
+[
+!-------------------------!
+address_line - Kedrova
+postal_code - 22112
+country - UK
+city - London
+fax_number - +380789793
+phone_number - +380123123
+ID - 140380997031584
+!-------------------------!, 
+!-------------------------!
+address_line - Brodway
+postal_code - 45348
+country - opit
+city - uirute
+fax_number - +38034542
+phone_number - +3805343425
+ID - 140381027610240
+!-------------------------!], 
+!-------------------------!
+address_line - lomsd
+postal_code - 98766
+country - vcbx
+city - sdfs
+fax_number - +38028932
+phone_number - +380452334
+ID - 140581658889904
+!-------------------------!, 
+!-------------------------!
+address_line - Brodway
+postal_code - 45348
+country - opit
+city - uirute
+fax_number - +38034542
+phone_number - +3805343425
+ID - 140581658890048
+!-------------------------!, 
+!-------------------------!
+address_line - newAddress
+postal_code - 57564
+country - newCountry
+city - newCity
+fax_number - +380738924
+phone_number - +380676432
+ID - 140581658924176
+!-------------------------!]----------------!
+address_line - newAddress
+postal_code - 57564
+country - newCountry
+city - newCity
+fax_number - +380738924
+phone_number - +380676432
+ID - 140581658924176
+!-------------------------!]
