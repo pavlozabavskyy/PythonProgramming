@@ -34,7 +34,7 @@ class CollectionCaretaker:
 
 
     def redo(self):
-        index = enterIntInRange(0, f'Enter index from 0 to {self._lenght - 1}: ', 0, self._lenght - 1)
+        index = enterIntInRange(0, f'Enter index from 0 to {self._lenght}: ', 0, self._lenght)
         for i in range(self._lenght - index-1):
             self._mementos.pop(index)
         self.undo()
