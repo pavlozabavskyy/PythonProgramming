@@ -1,7 +1,9 @@
 from LinkedList import Linked_list
 from pattern_strategy import *
 from validation import Validation as v
-import sys
+from classContext import Context
+from strategy1 import Strategy1
+from strategy2 import Strategy2
 
 
 
