@@ -52,10 +52,12 @@ def main2():
 
             elif choice == 9:
                 caretaker.undo()
+                collect.writeFile("output.txt", "r+")
             
             elif choice == 10:
                 caretaker.redo()
-
+                collect.writeFile("output.txt", "r+")
+                
             elif choice == 11:
                 break
 
