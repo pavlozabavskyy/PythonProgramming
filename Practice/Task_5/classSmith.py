@@ -1,11 +1,7 @@
-from validation import Validation as v
-from LinkedList import Linked_list
-from classStrategy import Strategy
 
 
 
-
-class Strategy1(Strategy):
+class Smith():
     def __primeDiv(self, n):
         i, a = 2, n
         div = []
@@ -49,17 +45,3 @@ class Strategy1(Strategy):
             current += 1
         self.num = current
         return num
-
-    def do_algorithm(self, l: Linked_list, position: int):
-        j = 0
-        n = v.enterInteger("Enter n: ")
-        for i in range(n):
-                l.insert(position+j, next(self))
-                j += 1
-
-        return l
-        
-
-
-
-

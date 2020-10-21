@@ -4,7 +4,7 @@ from classStrategy import Strategy
 
 
 
-class Strategy2(Strategy):
+class StrategyReadFile(Strategy):
 
     @staticmethod
     def __enter_file_name():

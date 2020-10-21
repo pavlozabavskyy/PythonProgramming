@@ -124,5 +124,19 @@ class Linked_list:
     def set_at(self, index, value):
         current = self.__at(index)
         current.data = value
-    
+    @staticmethod
+    def min_max(l: Linked_list):
+        s, maximum, minim, j = l.average(), -sys.maxsize, sys.maxsize, 0
+        
+        for i in l:
+            if i > maximum and i <= s:
+                maximum = i 
+                indexMax = j
+            if i < minim and i >= s:
+                minim = i 
+                indexMin = j
+            j += 1
+        print(f'max elem - {maximum}, \nmin elem - {minim}, \naverage  - {s}\n')
+
+        return indexMin, indexMax
 

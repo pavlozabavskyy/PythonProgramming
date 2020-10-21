@@ -2,15 +2,15 @@ from LinkedList import Linked_list
 from pattern_strategy import *
 from validation import Validation as v
 from classContext import Context
-from strategy1 import Strategy1
-from strategy2 import Strategy2
+from strategyIterator import StrategyIterator
+from strategyFile import StrategyReadFile
 
 
 
 def main():
     options = '1 - Strategy 1\n2 - Strategy 2\n3 - generate data\n4 - remove at\n5 - remove in range\n6 - list method\n7 - print list\n8 - exit\n'
     linked_list = Linked_list()
-    context = Context(Strategy1)
+    context = Context(StrategyIterator)
     r_border = 2
     while True:
         try:
@@ -18,11 +18,11 @@ def main():
             choice = v.intValidateInRange('Enter choice ', 0, r_border)
 
             if choice == 1:
-                context.strategy = Strategy1()  
+                context.strategy = StrategyIterator()  
                 r_border = 3
 
             elif choice == 2:
-                context.strategy = Strategy2()
+                context.strategy = StrategyReadFile()
                 r_border = 3
 
             elif choice == 3:
@@ -55,24 +55,8 @@ def main():
 
 
 
-def min_max(l: Linked_list):
-    s, maximum, minim, j = l.average(), -sys.maxsize, sys.maxsize, 0
-    
-    for i in l:
-        if i > maximum and i <= s:
-            maximum = i 
-            indexMax = j
-        if i < minim and i >= s:
-            minim = i 
-            indexMin = j
-        j += 1
-    print(f'max elem - {maximum}, \nmin elem - {minim}, \naverage  - {s}\n')
-
-    return indexMin, indexMax
-
-
 def menu6(linked_list: Linked_list):
-    l, r = min_max(linked_list)
+    l, r = linked_list.min_max(linked_list)
     j = 0
 
     if r < l:
