@@ -27,12 +27,14 @@ class CollectionAddress():
 
     def fromStrAddress(self, a):
         nA = CA()
-        try:
-            attributes = nA.getAttr()
-            attributes.remove("ID")
-            for i in a:
-                nA = CA()
-                k = 0
+        
+        attributes = nA.getAttr()
+        attributes.remove("ID")
+         
+        for i in a:
+            nA = CA()
+            k = 0
+            try:   
                 for j in attributes:
                     if isinstance(getattr(nA, j), int):
                         setattr(nA, str(j), int(i[k]))
@@ -40,10 +42,10 @@ class CollectionAddress():
                         setattr(nA, str(j), str(i[k]))
                     k += 1
 
-                self.__arr.append(nA)
-
-        except Exception as e:
-            raise e
+            except Exception as e:
+                print(e)
+                continue
+            self.__arr.append(nA)
 
 
     def addNewAddress(self):
