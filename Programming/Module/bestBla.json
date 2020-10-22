@@ -1,0 +1,15 @@
+[{
+        "DriverName": "NameA",
+        "NoOfPeople": 2,
+        "StartTime": "11:15:00",
+        "EndTime": "12:30:00",
+        "StartPlace": "placeA",
+        "EndPlace": "placeB"
+}, {
+        "DriverName": "NameA",
+        "NoOfPeople": 4,
+        "StartTime": "09:15:00",
+        "EndTime": "10:44:00",
+        "StartPlace": "placeA",
+        "EndPlace": "placeB"
+}]
