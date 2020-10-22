@@ -40,7 +40,7 @@ def check_lenght_Value(lenght):
 
 def check_phone_number(func):
     def func_wrapper(self, x):
-        symb = re.search(r'[a-zA-Z]', x)
+        symb = re.search(r'[a-zA-Z$]', x)
         if symb is not None:
             raise Exception("The value should not contain [a-Z] for function {} to work".format(func.__name__))
         elif x[0:4] != '+380': 

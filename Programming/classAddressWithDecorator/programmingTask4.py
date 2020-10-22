@@ -14,7 +14,6 @@ def main2():
             if choice == 1:
                 arr = CC.readFile()
                 collect.fromStrAddress(arr)
-                print(len(collect.at(0).fax_number))
 
             elif choice == 2:
                 print(collect)
