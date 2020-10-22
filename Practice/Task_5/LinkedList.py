@@ -1,3 +1,4 @@
+import sys
 
 class Node:
     def __init__(self, data):
@@ -124,8 +125,9 @@ class Linked_list:
     def set_at(self, index, value):
         current = self.__at(index)
         current.data = value
+
     @staticmethod
-    def min_max(l: Linked_list):
+    def min_max(l):
         s, maximum, minim, j = l.average(), -sys.maxsize, sys.maxsize, 0
         
         for i in l:

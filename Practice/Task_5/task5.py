@@ -1,5 +1,4 @@
 from LinkedList import Linked_list
-from pattern_strategy import *
 from validation import Validation as v
 from classContext import Context
 from strategyIterator import StrategyIterator
@@ -11,24 +10,20 @@ def main():
     options = '1 - Strategy 1\n2 - Strategy 2\n3 - generate data\n4 - remove at\n5 - remove in range\n6 - list method\n7 - print list\n8 - exit\n'
     linked_list = Linked_list()
     context = Context(StrategyIterator)
-    r_border = 2
     while True:
         try:
             print(options)
-            choice = v.intValidateInRange('Enter choice ', 0, r_border)
+            choice = v.intValidateInRange('Enter choice ', 1, 8)
 
             if choice == 1:
                 context.strategy = StrategyIterator()  
-                r_border = 3
 
             elif choice == 2:
                 context.strategy = StrategyReadFile()
-                r_border = 3
 
             elif choice == 3:
                 position = v.intValidateInRange('Enter position ', 0, len(linked_list))
                 linked_list = context.do_some_business_logic(linked_list, position)
-                r_border = 8
 
             elif choice == 4:
                 position = v.intValidateInRange('Enter position', 0, len(linked_list)-1)

@@ -1,6 +1,4 @@
 
-
-
 class Smith():
     def __primeDiv(self, n):
         i, a = 2, n

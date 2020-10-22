@@ -10,14 +10,13 @@ class StrategyIterator(Strategy):
     def do_algorithm(self, l: Linked_list, position: int):
         j = 0
         n = v.enterInteger("Enter n: ")
-        itSm = iter.SmithIter()
+        itSm = iter(Smith())
         for i in range(n):
-            l.insert(position+j, next(itSm))
+            data = next(itSm)
+            l.insert(position+j, data)
             j += 1
 
         return l
         
-
-
 
 

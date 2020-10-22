@@ -1,5 +1,6 @@
 from __future__ import annotations
 from classStrategy import Strategy
+from LinkedList import Linked_list
 
 
 

@@ -1,0 +1,1 @@
+                countPeople += i.NoOfPeople
