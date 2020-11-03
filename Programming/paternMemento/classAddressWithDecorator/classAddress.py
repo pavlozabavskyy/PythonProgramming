@@ -1,4 +1,5 @@
 from decorator import *
+import json
 
 class Address:
     def __init__(self, address_line = 'addressline', postal_code = 10000, country = 'country', city = 'city', fax_number = '+3800', phone_number = '+3800'):
@@ -9,7 +10,6 @@ class Address:
         self.fax_number = fax_number
         self.phone_number = phone_number
 
-
     def __str__(self):
         result = '\n!-------------------------!'
         for i in self.getAttr():
@@ -17,10 +17,16 @@ class Address:
         result += '\n!-------------------------!'
         return result
 
-
     def __repr__(self):
         return self.__str__()
 
+    def jsonFormat(self):
+        data = {}
+        attr = self.getAttr()
+        attr.remove('ID')
+        for i in attr:
+            data[i.replace('_Address__', '')] = getattr(self, i)
+        return json.dumps(data, indent = 8)
 
     @property
     def address_line(self):
@@ -50,10 +56,8 @@ class Address:
     def ID(self):
         return id(self)
 
-
     def getAttr(self):
         return [name for name, value in vars(Address).items() if isinstance(value, property)]
-
 
     def strAddressWithoutId(self):
         result = ''
@@ -64,17 +68,12 @@ class Address:
     def strAddressWithId(self):
         return f'{self.ID} {self.strAddressWithoutId}'
 
-
-
     @address_line.setter
     @check_str
     @check_symbol
     def address_line(self, value):
         '''Set address_line. type, symbol'''
         self._address_line = value
-
-
-
 
     @postal_code.setter
     @check_int
@@ -83,15 +82,12 @@ class Address:
         '''Set postal_code. lenght, type'''
         self._postal_code = value
 
-
-
     @country.setter
     @check_str
     @check_symbol
     def country(self, value):
         '''Set country. type, symbol'''
         self._country = value
-
 
     @city.setter
     @check_str
@@ -100,14 +96,12 @@ class Address:
         '''Set city. type, symbol'''
         self._city = value
 
-
     @fax_number.setter
     @check_str
     @check_phone_number
     def fax_number(self, value):
         '''Set fax_number. type, symbol and +380'''
         self._fax_number = value
-
 
     @phone_number.setter
     @check_str

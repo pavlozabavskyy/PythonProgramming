@@ -1,4 +1,5 @@
 import re
+
 def check_int(func):
     def func_wrapper(self, x):
         if not isinstance(x, int):
@@ -7,7 +8,6 @@ def check_int(func):
         return res
     return func_wrapper
 
-
 def check_str(func):
     def func_wrapper(self, x):
         if not isinstance(x, str):
@@ -15,7 +15,6 @@ def check_str(func):
         res = func(self, x)
         return res
     return func_wrapper
-
 
 def check_symbol(func):
     def func_wrapper(self, x):
@@ -36,7 +35,6 @@ def check_lenght_Value(lenght):
 
         return func_wrapper
     return actual_decorator
-
 
 def check_phone_number(func):
     def func_wrapper(self, x):
@@ -82,7 +80,6 @@ def enterStrDecor(func):
 def enterStr(value = "0", message = "Enter value : "):
     return value
 
-
 def intInRangeDecor(func):
     def func_wrapper(value, message, l, r):
         while True:
@@ -104,3 +101,10 @@ def intInRangeDecor(func):
 @intInRangeDecor
 def enterIntInRange(value = 0, message = "Enter value : ", l = 0, r = 100):
     return value
+
+def fileNameValidate(func):
+    def func_wrapper(_self, val): 
+        if not val.endswith('.json'):
+            raise ValueError("The value must be json format for function {} to work".format(func.__name__))
+        func(_self, val)
+    return func_wrapper

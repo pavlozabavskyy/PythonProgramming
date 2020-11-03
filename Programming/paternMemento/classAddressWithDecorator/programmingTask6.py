@@ -3,8 +3,7 @@ from classCollection import CollectionAddress as CC
 from classCollectionCaretaker import CollectionCaretaker
 from decorator import *
 
-
-def main2():
+def main():
     options = '1 - insert collection from file\n2 - print collection\n3 - sort\n4 - search\n5 - delete obj\n6 - add new obj\n7 - edit obj\n8 - show history\n9 - undo\n10 - redo\n11 - exit\n'
     collect = CC()
     caretaker = CollectionCaretaker(collect)
@@ -14,49 +13,34 @@ def main2():
             choice = enterIntInRange(0, 'Enter choice : ', 0, 11)
 
             if choice == 1:
-                arr = CC.readFile()
-                caretaker.backup()
-                collect.fromStrAddress(arr)
+                menu1(caretaker, collect)
 
             elif choice == 2:
                 print(collect)
 
             elif choice == 3:
-                attr = enterStr('0', 'Enter attribute: ')
-                caretaker.backup()
-                collect.sort(attr)
-                collect.writeFile("output.txt", "r+")
+                menu3(caretaker, collect)
 
             elif choice == 4:
-                value = enterStr('0', "Enter search elem - ")
-                collect.search(value)
+                menu4(collect)
 
             elif choice == 5:
-                index = enterIntInRange(0, f'Enter index from 0 to {len(collect) - 1}: ', 0, len(collect) -1)
-                caretaker.backup()
-                collect.deleteElem(index)
-                collect.writeFile("output.txt", "r+")
+                menu5(caretaker, collect)
 
             elif choice == 6:
-                caretaker.backup()
-                collect.addNewAddress()
-                collect.writeFile("output.txt", "r+")
+                menu6(caretaker, collect)
 
             elif choice == 7:
-                caretaker.backup()
-                collect.editAddress()
-                collect.writeFile("output.txt", "r+")
+                menu7(caretaker, collect)
 
             elif choice == 8:
-                caretaker.show_history()
+                menu8(caretaker)
 
             elif choice == 9:
-                caretaker.undo()
-                collect.writeFile("output.txt", "r+")
+                menu9(caretaker, collect)
             
             elif choice == 10:
-                caretaker.redo()
-                collect.writeFile("output.txt", "r+")
+                menu10(caretaker, collect)
                 
             elif choice == 11:
                 break
@@ -64,4 +48,47 @@ def main2():
         except Exception as e:
             print('Error ', '--'*20, '  ',e)
 
-main2()
+def menu1(caretaker, collect):
+    caretaker.backup()
+    collect.readJsonFile('data.json')
+    collect.writeJsonFile("output.json")
+
+def menu3(caretaker, collect):
+    attr = enterStr('0', 'Enter attribute: ')
+    caretaker.backup()
+    collect.sort(attr)
+    collect.writeJsonFile("output.json")
+
+def menu4(collect):
+    value = enterStr('0', "Enter search elem - ")
+    collect.search(value)
+
+def menu5(caretaker, collect):
+    index = enterIntInRange(0, f'Enter index from 0 to {len(collect) - 1}: ', 0, len(collect) -1)
+    caretaker.backup()
+    collect.deleteElem(index)
+    collect.writeJsonFile("output.json")
+
+def menu6(caretaker, collect):
+    caretaker.backup()
+    collect.addNewAddress()
+    collect.writeJsonFile("output.json")
+
+def menu7(caretaker, collect):
+    caretaker.backup()
+    collect.editAddress()
+    collect.writeJsonFile("output.json")
+
+def menu8(caretaker):
+    caretaker.show_history()
+
+def menu9(caretaker, collect):
+    caretaker.undo()
+    collect.writeJsonFile("output.json")
+
+def menu10(caretaker, collect):
+    caretaker.redo()
+    collect.writeJsonFile("output.json")
+
+if __name__ == '__main__':
+    main()

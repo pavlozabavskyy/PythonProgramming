@@ -2,6 +2,7 @@ from classAddress import Address as CA
 from classCollectionMemento import CollectionMemento
 from decorator import *
 import copy
+import json
 
 class CollectionAddress():
     __arr = []
@@ -22,7 +23,7 @@ class CollectionAddress():
         return str(self.__arr)
 
     def save(self):
-        newCollect = copy.deepcopy(self)
+        newCollect = copy.deepcopy(self.__arr)
         return CollectionMemento(newCollect)
 
     def restore(self, memento: CollectionMemento):
@@ -40,30 +41,9 @@ class CollectionAddress():
     def insert(self, obj):
         self.__arr.append(obj)
 
-    def fromStrAddress(self, a):
-        nA = CA()
-        try:
-            attributes = nA.getAttr()
-            attributes.remove("ID")
-            for i in a:
-                nA = CA()
-                k = 0
-                for j in attributes:
-                    if isinstance(getattr(nA, j), int):
-                        setattr(nA, str(j), int(i[k]))
-                    else:
-                        setattr(nA, str(j), str(i[k]))
-                    k += 1
-
-                self.__arr.append(nA)
-
-        except Exception as e:
-            raise e
-
-
     def addNewAddress(self):
-        nA = CA()    # new Address obj
         try:
+            nA = CA()
             attributes = nA.getAttr()
             attributes.remove("ID")
             for i in attributes:
@@ -86,15 +66,6 @@ class CollectionAddress():
                 print(i)
         if check:
             print('no search elem ')
-
-    def writeFile(self, fileName = 'output.txt', flag = 'r+'):
-        try:
-            fw = open(fileName, flag)
-            fw.write(str(self.__arr))
-            fw.close()
-        except IOError:
-            raise 'Error: can\'t find file or read data'
-
 
     def sort(self, attr = 'address_line'):
         try:
@@ -119,13 +90,34 @@ class CollectionAddress():
         except Exception as e:
             raise e
 
-    @staticmethod
-    def readFile(fileName = "data.txt"):
-        try:
-            open(fileName)
-            with open(fileName) as f:
-                arrOfStr = [line.split() for line in f]
-            f.close()
-            return arrOfStr
-        except Exception as e:
-            raise e
+    @fileNameValidate
+    def readJsonFile(self, fileName):
+        self.__arr = []
+        with open(fileName) as file:
+            jsonList = json.load(file)
+        newObj = CA()        
+        attr = newObj.getAttr()
+        attr.remove('ID')
+        
+        for i in jsonList:
+            try:
+                newObj = CA()   
+                for j in attr:
+                    if isinstance(getattr(newObj, j), int):
+                        setattr(newObj, j, int(i.get(str(j))))
+                    else:
+                        setattr(newObj, j, str(i.get(str(j))))
+            except Exception as e:
+                print('Error ', e)
+                continue
+            self.__arr.append(newObj)
+
+    @fileNameValidate
+    def writeJsonFile(self, fileName):
+        with open(fileName, mode='w') as file:
+            file.write('[')
+            for i in self.__arr:
+                file.write(i.jsonFormat())
+                if i != self.__arr[len(self) - 1]:
+                    file.write(', ')
+            file.write(']')
