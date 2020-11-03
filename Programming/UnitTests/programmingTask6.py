@@ -90,5 +90,6 @@ def menu10(caretaker, collect):
     caretaker.redo()
     collect.writeJsonFile("output.json")
 
-if __name__ == '__main__':
+"""if __name__ == '__main__':
     main()
+"""

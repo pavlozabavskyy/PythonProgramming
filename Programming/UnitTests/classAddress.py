@@ -2,7 +2,7 @@ from decorator import *
 import json
 
 class Address:
-    def __init__(self, address_line = 'addressline', postal_code = 10000, country = 'country', city = 'city', fax_number = '+3800', phone_number = '+3800'):
+    def __init__(self, address_line = 'addressline', postal_code = 10000, country = 'country', city = 'city', fax_number = '+380979088267', phone_number = '+380979088267'):
         self.address_line = address_line
         self.postal_code = postal_code
         self.country = country
