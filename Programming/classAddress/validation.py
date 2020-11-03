@@ -35,8 +35,14 @@ class Validation():
         value = Validation.strValidate(value, message)
         value = Validation.symbolValidate(value, message, r'[a-zA-Z]')
 
-        if value[0:4] != '+380':
-            raise Exception(f'Number error of {message}')
+        symb = re.search(r'[a-zA-Z$]', value)
+        if symb is not None:
+            raise Exception("The value should not contain [a-Z] for function {} to work".format(func.__name__))
+        elif value[0:4] != '+380': 
+            raise Exception("Start +380 for function {} to work".format(func.__name__))
+        elif len(value) != 13:
+            raise Exception("len(x) != 13 for function {} to work".format(func.__name__))
+            
         return value
 
     @staticmethod
