@@ -17,13 +17,19 @@ class Address:
         result += '\n!-------------------------!'
         return result
 
+    def __eq__(self, other):
+        for i in self.getAttr():
+            if getattr(self, str(i)) != getattr(other, str(i)):
+                return False
+        return True
+
     def __repr__(self):
         return self.__str__()
 
     def jsonFormat(self):
         data = {}
         attr = self.getAttr()
-        attr.remove('ID')
+        #attr.remove('ID')
         for i in attr:
             data[i.replace('_Address__', '')] = getattr(self, i)
         return json.dumps(data, indent = 8)
@@ -50,23 +56,29 @@ class Address:
 
     @property
     def phone_number(self):
-        return self._phone_number
+        return str(self._phone_number)
 
-    @property
+    #@property
     def ID(self):
         return id(self)
 
     def getAttr(self):
         return [name for name, value in vars(Address).items() if isinstance(value, property)]
 
-    def strAddressWithoutId(self):
+    """def strAddressWithoutId(self):
+        result = ''
+        attr = self.getAttr()
+        attr.remove('ID')
+        for i in attr:
+            result += str(getattr(self, str(i))) + ' '
+        return result"""
+
+    def strAddress(self):
         result = ''
         for i in self.getAttr():
             result += str(getattr(self, str(i))) + ' '
         return result
-
-    def strAddressWithId(self):
-        return f'{self.ID} {self.strAddressWithoutId}'
+        #return f'{self.ID} {self.strAddressWithoutId}'
 
     @address_line.setter
     @check_str

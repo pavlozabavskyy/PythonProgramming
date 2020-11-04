@@ -22,6 +22,17 @@ class CollectionAddress():
     def __str__(self):
         return str(self.__arr)
 
+    def __getitem__(self, index):
+        return self.__arr[index]
+
+    def __eq__(self, other):
+        j = 0
+        for i in self.__arr:
+            if not (i == other[j]):
+                return False
+            j +=1
+        return True
+
     def save(self):
         newCollect = copy.deepcopy(self.__arr)
         return CollectionMemento(newCollect)
@@ -41,32 +52,36 @@ class CollectionAddress():
     def insert(self, obj):
         self.__arr.append(obj)
 
-    def addNewAddress(self):
+    def addNewAddress(self, arrSTR, arrINT):
         try:
             nA = CA()
             attributes = nA.getAttr()
-            attributes.remove("ID")
+            #attributes.remove("ID")
             for i in attributes:
                 if isinstance(getattr(nA, i), int):
-                    valInt = enterInt(0, f'Enter {i} : ')
-                    setattr(nA, str(i), valInt)
+                    #valInt = enterInt(0, f'Enter {i} : ')
+                    setattr(nA, str(i), arrINT[0])
+                    arrINT.pop(0)       # якщо б ми мали декілька int значень , ми б присвоїли їх тут
                 else:
-                    valStr = enterStr('0', f'Enter {i}: ')
-                    setattr(nA, str(i), valStr)
+                    #valStr = enterStr('0', f'Enter {i}: ')
+                    setattr(nA, str(i), arrSTR[0])
+                    arrSTR.pop(0)
             self.__arr.append(nA)
         except Exception as e:
             raise e
 
     def search(self, value):
-        print(f'search value : {value} \n')
-        check = True
+        #print(f'search value : {value} \n')
+        items = []
         for i in self.__arr:
-            if i.strAddressWithId().lower().find(str(value.lower())) != -1 :
-                check = False
-                print(i)
-        if check:
-            print('no search elem ')
+            if i.strAddress().lower().find(str(value.lower())) != -1 :
+                items.append(i)
+        if not len(items):
+            raise AttributeError('No search item')
+            return
 
+        return items   
+        
     def sort(self, attr = 'address_line'):
         try:
             if isinstance(getattr(self.__arr[0], attr), int):
@@ -76,16 +91,29 @@ class CollectionAddress():
         except AttributeError:
             raise AttributeError(f'\'Address\' object has no attribute {attr}')
 
-    def editAddress(self):
+    def bubbleSort(self, attr = 'address_line'):
         try:
-            attr = enterStr('0', 'Enter attribute: ')
-            index = enterIntInRange(0, 'Enter index : ', 0, len(collect))
+            for i in range(len(self.__arr) - 1):
+                for j in range(0, (len(self.__arr) - 1 - i)):
+                    if isinstance(getattr(self.__arr[0], attr), int):
+                        if getattr(self.__arr[j], attr) > getattr(self.__arr[j + 1], attr):
+                            self.__arr[j], self.__arr[j+1] = self.__arr[j + 1], self.__arr[j]
+                    else:
+                        if getattr(self.__arr[j], attr).lower() > getattr(self.__arr[j + 1], attr).lower():
+                            self.__arr[j], self.__arr[j+1] = self.__arr[j + 1], self.__arr[j]  
+        except AttributeError:
+            raise AttributeError(f'\'Address\' object has no attribute {attr}')   
+
+    def editAddress(self, index, attr, value):
+        try:
+            #attr = enterStr('0', 'Enter attribute: ')
+            #index = enterIntInRange(0, 'Enter index : ', 0, len(collect))
             if isinstance(getattr(self.__arr[index], attr), int):
-                valInt = enterInt(0, f'Enter {attr} : ')
-                setattr(self.__arr[index], attr, valInt)
+                #valInt = enterInt(0, f'Enter {attr} : ')
+                setattr(self.__arr[index], attr, value)
             else:
-                valStr = enterStr('0', f'Enter {attr}: ')
-                setattr(self.__arr[index], attr, valStr)
+                #valStr = enterStr('0', f'Enter {attr}: ')
+                setattr(self.__arr[index], attr, value)
 
         except Exception as e:
             raise e
@@ -97,7 +125,7 @@ class CollectionAddress():
             jsonList = json.load(file)
         newObj = CA()        
         attr = newObj.getAttr()
-        attr.remove('ID')
+        #attr.remove('ID')
         
         for i in jsonList:
             try:

@@ -7,23 +7,23 @@ class CollectionCaretaker:
     def __init__(self, collect):
         self._collect = collect
         self._mementos = []
-        self._current = -2
+        self._current = 0
         self._maxlen = 5
         self._checkUndo = False
 
     def backup(self):
-        print('\nCaretaker: saving collection...')
+        #print('\nCaretaker: saving collection...')
         self._mementos.append(self._collect.save())
-        self._maxlen += 1
+        #self._current +=1
         if not self._checkUndo:
             self._current += 1
         if self._maxlen == 6:
             self._mementos.pop(0)
-            #self._current -= 1
+            self._current -= 1
 
     def __isEmpty(self):
         if not len(self._mementos):
-            raise Exception('empty')
+            raise Exception('empty memento')
 
     def undo(self):
         self.__isEmpty()
@@ -34,7 +34,6 @@ class CollectionCaretaker:
         else:
             self._current -= 1
 
-            print(self._current)
             memento = self._mementos[self._current]
 
             try:
@@ -47,7 +46,7 @@ class CollectionCaretaker:
     def redo(self):
         self.__isEmpty()
 
-        if self._maxlen == 5:
+        if self._current == len(self._mementos):
             raise Exception('last caretaker')        
 
         else:
