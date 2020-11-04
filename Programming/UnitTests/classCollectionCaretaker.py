@@ -12,12 +12,10 @@ class CollectionCaretaker:
         self._checkUndo = False
 
     def backup(self):
-        #print('\nCaretaker: saving collection...')
         self._mementos.append(self._collect.save())
-        #self._current +=1
         if not self._checkUndo:
             self._current += 1
-        if self._maxlen == 6:
+        if len(self._mementos) == (self._maxlen + 1):
             self._mementos.pop(0)
             self._current -= 1
 
@@ -30,35 +28,28 @@ class CollectionCaretaker:
 
         if self._current == 0:
             raise Exception('Current = 0')
-            
         else:
             self._current -= 1
-
             memento = self._mementos[self._current]
-
             try:
                 self._collect.restore(memento)
             except Exception as e:
                 print(e)
-
             self._checkUndo = True
 
     def redo(self):
         self.__isEmpty()
 
-        if self._current == len(self._mementos):
+        if self._current >= (len(self._mementos)-1):
             raise Exception('last caretaker')        
-
         else:
             self._current += 1
             memento = self._mementos[self._current]
-            print(self._current)
             try:
                 self._collect.restore(memento)
             except Exception as e:
                 print(e)
         
-
     def show_history(self):
         print('\n\n!','_'*30 ,'history','_'*30, '!', "\nCaretaker: Here's the list of mementos:")
         j = 0

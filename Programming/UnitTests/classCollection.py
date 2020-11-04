@@ -27,11 +27,13 @@ class CollectionAddress():
 
     def __eq__(self, other):
         j = 0
-        for i in self.__arr:
-            if not (i == other[j]):
-                return False
-            j +=1
-        return True
+        check = True
+        if len(self.__arr) != len(other):
+            check = False
+        for i in range(len(self.__arr)):
+            if self.__arr[i] != other[i]:
+                check == False 
+        return check
 
     def save(self):
         newCollect = copy.deepcopy(self.__arr)

@@ -12,38 +12,17 @@ def main():
             print(options)
             choice = enterIntInRange(0, 'Enter choice : ', 0, 11)
 
-            if choice == 1:
-                readFromFileMenu(caretaker, collect)
-
-            elif choice == 2:
-                print(collect)
-
-            elif choice == 3:
-                sortMenu(caretaker, collect)
-
-            elif choice == 4:
-                searchMenu(collect)
-
-            elif choice == 5:
-                deleteMenu(caretaker, collect)
-
-            elif choice == 6:
-                newObjMenu(caretaker, collect)
-
-            elif choice == 7:
-                editObjMenu(caretaker, collect)
-
-            elif choice == 8:
-                mementoHistoryMenu(caretaker)
-
-            elif choice == 9:
-                undoMenu(caretaker, collect)
-            
-            elif choice == 10:
-                redoMenu(caretaker, collect)
-                
-            elif choice == 11:
-                break
+            if choice == 1: readFromFileMenu(caretaker, collect)
+            elif choice == 2: print(collect)
+            elif choice == 3: sortMenu(caretaker, collect)
+            elif choice == 4: searchMenu(collect)
+            elif choice == 5: deleteMenu(caretaker, collect)
+            elif choice == 6: newObjMenu(caretaker, collect)
+            elif choice == 7: editObjMenu(caretaker, collect)
+            elif choice == 8: mementoHistoryMenu(caretaker)
+            elif choice == 9: undoMenu(caretaker, collect)         
+            elif choice == 10: redoMenu(caretaker, collect)
+            elif choice == 11: break
 
         except Exception as e:
             print('Error ', '--'*20, '  ',e)
