@@ -8,7 +8,7 @@ from programmingTask6 import *
 
 class Tests(unittest.TestCase):
 
-    def __test_colllect():
+    def __test_collect():
         address1 = CA("Brodway", 45348, "opit", "uirute", "+380979085267", "+380939088267")
         address2 = CA("Kedrova", 22112, "UK", "London", "+380979488267", "+380973088267")
         address3 = CA("address", 12345, "Ukraine", "Lviv", "+380972088267", "+380975088267")
@@ -26,8 +26,8 @@ class Tests(unittest.TestCase):
 
         return test_collect
 
-    def testReadFromFile(self):
-        test_collect = Tests.__test_colllect()
+    def testWriteReadFile(self):
+        test_collect = Tests.__test_collect()
 
         test_collect.writeJsonFile('testReadWrite.json')
 
@@ -36,7 +36,6 @@ class Tests(unittest.TestCase):
     
         self.assertEqual(collect, test_collect)
 
-    #@unittest.skip
     def testSort(self):
         collect = CC()
         collect.readJsonFile('data.json')
@@ -86,7 +85,7 @@ class Tests(unittest.TestCase):
         test_collect.insert(address5)
         test_collect.insert(address6)
 
-        collect = Tests.__test_colllect()
+        collect = Tests.__test_collect()
         collect.deleteElem(2)
 
         self.assertEqual(collect, test_collect)
@@ -140,7 +139,7 @@ class Tests(unittest.TestCase):
 
 
     def testUndo(self):
-        collect = Tests.__test_colllect()
+        collect = Tests.__test_collect()
         test_collect = copy.deepcopy(collect)
         caretaker = CollectionCaretaker(collect)
 
@@ -153,7 +152,7 @@ class Tests(unittest.TestCase):
 
 
     def testRedo(self):
-        collect = Tests.__test_colllect()
+        collect = Tests.__test_collect()
         caretaker = CollectionCaretaker(collect)
 
         caretaker.backup()
@@ -170,16 +169,6 @@ class Tests(unittest.TestCase):
         caretaker.undo()
         caretaker.redo()
         self.assertEqual(collect, test_collect)
-
-
-    
-
-       
-
-    
-
-
-
 
 
 if __name__ == '__main__':
