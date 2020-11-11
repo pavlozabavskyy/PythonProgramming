@@ -1,6 +1,8 @@
 from validation import Validation as v
 from LinkedList import Linked_list
 from classStrategy import Strategy
+from Event import Event
+import copy
 
 
 
@@ -24,11 +26,13 @@ class StrategyReadFile(Strategy):
     def do_algorithm(self, l: Linked_list, position: int):
         file_name = self.__enter_file_name()
         temp, j = self.__readFile(file_name), 0
+        newList = copy.deepcopy(l)
         if len(l) == 0:
             l = temp
         else:
             for i in temp:
                 l.insert(position+j, i)
                 j += 1
+        Event.do_some('add', [newList, position, l])
         return l
 

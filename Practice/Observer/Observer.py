@@ -1,7 +1,8 @@
 
-
-
 class Observer:
+    observers = dict()
 
-    def do_some(self):
-        pass
+    @staticmethod
+    def attach(methodName: str, callback) -> None:
+        Observer.observers[methodName] = callback
+
