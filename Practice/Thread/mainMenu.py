@@ -8,7 +8,7 @@ from Logger import Logger
 from Event import Event
 import copy
 import threading
-from threading import Thread
+
 
 def main():
     Observer.attach('add', Logger.log)
@@ -23,22 +23,18 @@ def main():
         try:
             print(options)
             choice = v.intValidateInRange('Enter choice ', 1, 5)
-
             if choice == 1: linked_list1 = generateList(linked_list1)
             elif choice == 2: linked_list2 = generateList(linked_list2)
             elif choice == 3: linked_list1, linked_list2 = listMethod(linked_list1, linked_list2)
             elif choice == 4: print('list 1 - {}\nlist 2 - {}\n'.format(linked_list1, linked_list2))
             elif choice == 5: break
-
         except Exception as e:
                 print('Error ', '--'*15, '  ',e)
-
 
 def generateList(linked_list: Linked_list):
     options = ' 1 - Strategy 1\n 2 - Strategy 2\n 3 - generate data\n 4 - print list\n 5 - exit\n'
     context = Context(StrategyIterator)
-    while True:
-        
+    while True:  
         print(options)
         choice = v.intValidateInRange('Enter choice ', 1, 5)
         if choice == 1: context.strategy = StrategyIterator()  
@@ -46,9 +42,6 @@ def generateList(linked_list: Linked_list):
         elif choice == 3: linked_list = generateMenu(linked_list, context)
         elif choice == 4: print(linked_list)
         elif choice == 5: return linked_list
-
-        #except Exception as e:
-            #print('Error ', '--'*15, '  ',e)
 
 def generateMenu(linked_list: Linked_list, context):
     position = v.intValidateInRange('Enter position ', 0, len(linked_list))
