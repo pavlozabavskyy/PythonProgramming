@@ -21,7 +21,14 @@ def main():
 
     linked_list1 = Linked_list()
     linked_list2 = Linked_list()
-    options = '1 - first list \n2 - second list\n3 - list method\n4 - print lists\n5 - exit\n'
+    options = ('🌝 🌝 🌝 🌝 🌝 🌝 🌝 🌝\n'+
+                '🌜 1 - first list    🌛\n'+
+                '🌜 2 - second list   🌛\n'+
+                '🌜 3 - list method   🌛\n'+
+                '🌜 4 - print lists   🌛\n'+
+                '🌜 5 - exit          🌛\n'+
+                '🌝 🌝 🌝 🌝 🌝 🌝 🌝 🌝\n')
+
     while True:
         try:
             print(options)
@@ -35,7 +42,13 @@ def main():
                 print('Error ', '--'*15, '  ',e)
 
 def generateList(linked_list: Linked_list, lname = 'l'):
-    options = ' 1 - Strategy 1\n 2 - Strategy 2\n 3 - generate data\n 4 - print list\n 5 - exit\n'
+    options = ('🗿 🗿 🗿 🗿 🗿 🗿 🗿 🗿\n'+
+                '🗿 1 - Strategy 1    🗿\n'+
+                '🗿 2 - Strategy 2    🗿\n'+
+                '🗿 3 - generate data 🗿\n'+
+                '🗿 4 - print list    🗿\n'+
+                '🗿 5 - exit          🗿\n'+
+                '🗿 🗿 🗿 🗿 🗿 🗿 🗿 🗿\n')
     context = Context(StrategyIterator)
     while True:  
         print(options)
@@ -52,7 +65,14 @@ def generateMenu(linked_list: Linked_list, context, lname = 'l'):
     return linked_list
 
 def listMethod(linked_list1: Linked_list, linked_list2: Linked_list):
-    options = '  1 - remove at\n  2 - remove in range\n  3 - task method\n  4 - print lists\n  5 - exit\n'
+    options = ('🍎 🍎 🍎 🍎 🍎 🍎 🍎 🍎 🍎 \n'+
+                '🍎   Choice:            🍎\n'+
+                '🍎 1 - remove at        🍎\n'+
+                '🍎 2 - remove in range  🍎\n'+
+                '🍎 3 - task method      🍎\n'+
+                '🍎 4 - print lists      🍎\n'+
+                '🍎 5 - exit             🍎\n'+
+                '🍎 🍎 🍎 🍎 🍎 🍎 🍎 🍎 🍎 \n')
     thread1 = threading.Thread()
     thread2 = threading.Thread()
     while True:
@@ -63,18 +83,13 @@ def listMethod(linked_list1: Linked_list, linked_list2: Linked_list):
                 position = v.enterInteger('Enter position: ')
                 thread1 = threading.Thread(target=deleteAtMenu, args=(linked_list1, position, 'l1', ))
                 thread2 = threading.Thread(target=deleteAtMenu, args=(linked_list2, position, 'l2', ))
-                
             elif choice == 2:
                 l, r = v.int_validate_range()
                 thread1 = threading.Thread(target=deleteInRangeMenu, args=(linked_list1, l, r, 'l1', ))
                 thread2 = threading.Thread(target=deleteInRangeMenu, args=(linked_list2, l, r, 'l2', ))
-                thread1.start()
-                thread2.start() 
             elif choice == 3:
                 thread1 = threading.Thread(target=listMethodMenu, args=(linked_list1, 'l1', ))
                 thread2 = threading.Thread(target=listMethodMenu, args=(linked_list2, 'l2', ))
-                thread1.start()
-                thread2.start() 
             elif choice == 4:
                 print('list 1 - {}\nlist 2 - {}\n'.format(linked_list1, linked_list2))
             elif choice == 5:
@@ -88,23 +103,23 @@ def listMethod(linked_list1: Linked_list, linked_list2: Linked_list):
         thread2.join()
 
 def deleteAtMenu(linked_list: Linked_list, position: int, lname: str):
-    print('Thread {}  : starting'.format(lname[1]))
+    print('Thread {}  : starting 🍺'.format(lname[1]))
     beforeList = copy.deepcopy(linked_list)
     linked_list.remove_at(position)
     Event.do_some('delete', [beforeList, position, linked_list, lname])
-    print('Thread {}  : finishing'.format(lname[1]))
+    print('Thread {}  : finishing 🍻'.format(lname[1]))
     return linked_list
 
 def deleteInRangeMenu(linked_list: Linked_list, l: int, r: int, lname: str):
-    print('Thread {}  : starting'.format(lname[1]))
+    print('Thread {}  : starting 🍺'.format(lname[1]))
     beforeList = copy.deepcopy(linked_list)
     linked_list.remove_in_range(l, r)
     Event.do_some('deleteInRange', [beforeList, [l, r], linked_list, lname])
-    print('Thread {}  : finishing'.format(lname[1]))
+    print('Thread {}  : finishing 🍻'.format(lname[1]))
     return linked_list
 
 def listMethodMenu(linked_list: Linked_list, lname: str):
-    print('Thread {}  : starting'.format(lname[1]))
+    print('Thread {}  : starting 🍺'.format(lname[1]))
     beforeList = copy.deepcopy(linked_list)
     l, r = linked_list.min_max(linked_list)
     j = 1
@@ -119,14 +134,13 @@ def listMethodMenu(linked_list: Linked_list, lname: str):
         linked_list.set_at(r - j, temp)
         j += 1
     Event.do_some('taskMethod', [beforeList, [l, r], linked_list, lname])
-    print('Thread {}  : finishing'.format(lname[1]))
+    print('Thread {}  : finishing 🍻'.format(lname[1]))
     return linked_list
 
 
 if __name__ == '__main__':
     main()
     
-
 
 
 
