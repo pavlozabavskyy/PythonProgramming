@@ -15,6 +15,6 @@ class Context():
     def strategy(self, strategy: Strategy) -> None:
         self._strategy = strategy
 
-    def do_some_business_logic(self, l: Linked_list, position: int) -> None:
-        result = self._strategy.do_algorithm(l, position)
+    def do_some_business_logic(self, l: Linked_list, position: int, lname: str):
+        result = self._strategy.do_algorithm(l, position, lname)
         return result

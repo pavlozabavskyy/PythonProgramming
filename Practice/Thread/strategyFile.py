@@ -22,7 +22,7 @@ class StrategyReadFile(Strategy):
         except Exception as e:
             raise e
 
-    def do_algorithm(self, l: Linked_list, position: int):
+    def do_algorithm(self, l: Linked_list, position: int, lname: str):
         file_name = self.__enter_file_name()
         temp, j = self.__readFile(file_name), 0
         newList = copy.deepcopy(l)
@@ -32,6 +32,6 @@ class StrategyReadFile(Strategy):
             for i in temp:
                 l.insert(position+j, i)
                 j += 1
-        Event.do_some('add', [newList, position, l])
+        Event.do_some('add', [newList, position, l, lname])
         return l
 

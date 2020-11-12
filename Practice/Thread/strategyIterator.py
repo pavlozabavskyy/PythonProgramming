@@ -8,7 +8,7 @@ import copy
 
 class StrategyIterator(Strategy):
 
-    def do_algorithm(self, l: Linked_list, position: int):
+    def do_algorithm(self, l: Linked_list, position: int, lname: str):
         newList = copy.deepcopy(l)
         j = 0
         n = v.enterInteger("Enter n: ")
@@ -17,7 +17,7 @@ class StrategyIterator(Strategy):
             data = next(itSm)
             l.insert(position+j, data)
             j += 1
-        Event.do_some('add', [newList, position, l])
+        Event.do_some('add', [newList, position, l, lname])
         return l
         
 
