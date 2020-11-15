@@ -7,7 +7,7 @@ class Logger:
         else:
             fileName = 'logs2.txt'
         with open(fileName, 'a') as f:
-            f.write('\nMethod - {} ( {}, {}, {} )\n'.format(methodName, data[0], data[1], data[2]))
+            f.write('\nMethod - {} ( {}, {}, {} )'.format(methodName, data[0], data[1], data[2]))
 
 
         

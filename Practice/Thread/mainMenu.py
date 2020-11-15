@@ -83,13 +83,16 @@ def listMethod(linked_list1: Linked_list, linked_list2: Linked_list):
                 position = v.enterInteger('Enter position: ')
                 thread1 = threading.Thread(target=deleteAtMenu, args=(linked_list1, position, 'l1', ))
                 thread2 = threading.Thread(target=deleteAtMenu, args=(linked_list2, position, 'l2', ))
+                threadMenu(thread1, thread2)
             elif choice == 2:
                 l, r = v.int_validate_range()
                 thread1 = threading.Thread(target=deleteInRangeMenu, args=(linked_list1, l, r, 'l1', ))
                 thread2 = threading.Thread(target=deleteInRangeMenu, args=(linked_list2, l, r, 'l2', ))
+                threadMenu(thread1, thread2)
             elif choice == 3:
                 thread1 = threading.Thread(target=listMethodMenu, args=(linked_list1, 'l1', ))
                 thread2 = threading.Thread(target=listMethodMenu, args=(linked_list2, 'l2', ))
+                threadMenu(thread1, thread2)
             elif choice == 4:
                 print('list 1 - {}\nlist 2 - {}\n'.format(linked_list1, linked_list2))
             elif choice == 5:
@@ -97,10 +100,7 @@ def listMethod(linked_list1: Linked_list, linked_list2: Linked_list):
         
         except Exception as e:
             print('Error ', '--'*15, '  ',e)
-        thread1.start()
-        thread2.start() 
-        thread1.join()
-        thread2.join()
+        
 
 def deleteAtMenu(linked_list: Linked_list, position: int, lname: str):
     print('Thread {}  : starting 🍺'.format(lname[1]))
@@ -136,6 +136,12 @@ def listMethodMenu(linked_list: Linked_list, lname: str):
     Event.do_some('taskMethod', [beforeList, [l, r], linked_list, lname])
     print('Thread {}  : finishing 🍻'.format(lname[1]))
     return linked_list
+
+def threadMenu(thread1, thread2):
+    thread1.start()
+    thread2.start() 
+    thread1.join()
+    thread2.join()
 
 
 if __name__ == '__main__':

@@ -131,6 +131,5 @@ class Linked_list:
                 minim = i 
                 indexMin = j
             j += 1
-        print(f'max elem - {maximum}, \nmin elem - {minim}, \naverage  - {s}\n')
         return indexMin, indexMax
 
