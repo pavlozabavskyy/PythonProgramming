@@ -6,5 +6,5 @@ class Address(models.Model):
     postal_code = models.IntegerField()
     country = models.CharField(max_length=40)
     city = models.CharField(max_length=40)
-    fax_number = models.CharField(max_length=13)
-    phone_number = models.CharField(max_length=13)
+    fax_number = models.CharField(max_length=17)
+    phone_number = models.CharField(max_length=17)
