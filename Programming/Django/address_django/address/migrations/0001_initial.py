@@ -15,10 +15,10 @@ class Migration(migrations.Migration):
             name='Address',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('address_line', models.CharField(max_length=40)),
+                ('address_line', models.CharField(max_length=50)),
                 ('postal_code', models.CharField(max_length=5)),
-                ('country', models.CharField(max_length=40)),
-                ('city', models.CharField(max_length=40)),
+                ('country', models.CharField(max_length=50)),
+                ('city', models.CharField(max_length=50)),
                 ('fax_number', models.CharField(max_length=13)),
                 ('phone_number', models.CharField(max_length=13)),
             ],
