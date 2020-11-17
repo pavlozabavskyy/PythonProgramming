@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('address_line', models.CharField(max_length=40)),
-                ('postal_code', models.IntegerField()),
+                ('postal_code', models.CharField(max_length=5)),
                 ('country', models.CharField(max_length=40)),
                 ('city', models.CharField(max_length=40)),
                 ('fax_number', models.CharField(max_length=13)),
