@@ -11,9 +11,7 @@ import threading
 
 
 def main():
-    """
-    Main function.
-    """
+    """ Main function """
     Observer.attach('add', Logger.log)
     Observer.attach('delete', Logger.log)
     Observer.attach('deleteInRange', Logger.log)
@@ -28,7 +26,6 @@ def main():
                 '🌜 4 - print lists   🌛\n'+
                 '🌜 5 - exit          🌛\n'+
                 '🌝 🌝 🌝 🌝 🌝 🌝 🌝 🌝\n')
-
     while True:
         try:
             print(options)
@@ -73,26 +70,19 @@ def listMethod(linked_list1: Linked_list, linked_list2: Linked_list):
                 '🍎 4 - print lists      🍎\n'+
                 '🍎 5 - exit             🍎\n'+
                 '🍎 🍎 🍎 🍎 🍎 🍎 🍎 🍎 🍎 \n')
-    thread1 = threading.Thread()
-    thread2 = threading.Thread()
+    lists = [linked_list1, linked_list2]
     while True:
         try:
             print(options)
             choice = v.intValidateInRange('Enter choice ', 1, 5)
             if choice == 1: 
                 position = v.enterInteger('Enter position: ')
-                thread1 = threading.Thread(target=deleteAtMenu, args=(linked_list1, position, 'l1', ))
-                thread2 = threading.Thread(target=deleteAtMenu, args=(linked_list2, position, 'l2', ))
-                threadMenu(thread1, thread2)
+                threadMenu(lists, my_target= deleteAtMenu, position= position)
             elif choice == 2:
                 l, r = v.int_validate_range()
-                thread1 = threading.Thread(target=deleteInRangeMenu, args=(linked_list1, l, r, 'l1', ))
-                thread2 = threading.Thread(target=deleteInRangeMenu, args=(linked_list2, l, r, 'l2', ))
-                threadMenu(thread1, thread2)
+                threadMenu(lists, my_target= deleteInRangeMenu, position= [l, r])
             elif choice == 3:
-                thread1 = threading.Thread(target=listMethodMenu, args=(linked_list1, 'l1', ))
-                thread2 = threading.Thread(target=listMethodMenu, args=(linked_list2, 'l2', ))
-                threadMenu(thread1, thread2)
+                threadMenu(lists, my_target= listMethodMenu)
             elif choice == 4:
                 print('list 1 - {}\nlist 2 - {}\n'.format(linked_list1, linked_list2))
             elif choice == 5:
@@ -100,9 +90,8 @@ def listMethod(linked_list1: Linked_list, linked_list2: Linked_list):
         
         except Exception as e:
             print('Error ', '--'*15, '  ',e)
-        
 
-def deleteAtMenu(linked_list: Linked_list, position: int, lname: str):
+def deleteAtMenu(linked_list: Linked_list, lname: str, position: int):
     print('Thread {}  : starting 🍺'.format(lname[1]))
     beforeList = copy.deepcopy(linked_list)
     linked_list.remove_at(position)
@@ -110,15 +99,15 @@ def deleteAtMenu(linked_list: Linked_list, position: int, lname: str):
     print('Thread {}  : finishing 🍻'.format(lname[1]))
     return linked_list
 
-def deleteInRangeMenu(linked_list: Linked_list, l: int, r: int, lname: str):
+def deleteInRangeMenu(linked_list: Linked_list, lname: str, pos):
     print('Thread {}  : starting 🍺'.format(lname[1]))
     beforeList = copy.deepcopy(linked_list)
-    linked_list.remove_in_range(l, r)
-    Event.do_some('deleteInRange', [beforeList, [l, r], linked_list, lname])
+    linked_list.remove_in_range(pos[0], pos[1])
+    Event.do_some('deleteInRange', [beforeList, [pos[0], pos[1]], linked_list, lname])
     print('Thread {}  : finishing 🍻'.format(lname[1]))
     return linked_list
 
-def listMethodMenu(linked_list: Linked_list, lname: str):
+def listMethodMenu(linked_list: Linked_list, lname: str, position=0):
     print('Thread {}  : starting 🍺'.format(lname[1]))
     beforeList = copy.deepcopy(linked_list)
     l, r = linked_list.min_max(linked_list)
@@ -137,12 +126,13 @@ def listMethodMenu(linked_list: Linked_list, lname: str):
     print('Thread {}  : finishing 🍻'.format(lname[1]))
     return linked_list
 
-def threadMenu(thread1, thread2):
-    thread1.start()
-    thread2.start() 
-    thread1.join()
-    thread2.join()
-
+def threadMenu(lists, my_target, position = 0):
+    j = 1
+    for i in lists:
+        thread = threading.Thread(target=my_target, args=(i, 'l'+str(j), position))
+        thread.start()
+        thread.join()
+        j += 1
 
 if __name__ == '__main__':
     main()

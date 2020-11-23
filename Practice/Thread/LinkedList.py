@@ -95,6 +95,7 @@ class Linked_list:
                 i += 1
 
     def remove_in_range(self, l, r):
+        r -=1
         for i in range(r-l+1):
             self.remove_at(l)
 
