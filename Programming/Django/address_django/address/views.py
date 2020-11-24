@@ -1,6 +1,5 @@
 from django.shortcuts import render
-from rest_framework import viewsets
-from rest_framework import filters
+from rest_framework import viewsets, filters
 from .models import Address
 from .serializers import AddressSerializer
 
