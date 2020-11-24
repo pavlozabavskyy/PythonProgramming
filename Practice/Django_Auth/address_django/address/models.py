@@ -1,9 +1,8 @@
 from django.db import models
 from django.core.validators import RegexValidator
 from .validation import Validation
-from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 
-User = get_user_model()
 
 class Address(models.Model):
     address_line = models.CharField(validators=[Validation.symbolValidation], 

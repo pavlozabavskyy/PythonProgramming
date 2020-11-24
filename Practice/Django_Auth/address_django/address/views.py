@@ -3,7 +3,8 @@ from rest_framework import viewsets
 from rest_framework import filters
 from .models import Address
 from .serializers import AddressSerializer
-from .permision import IsOwnerOrReadOnly
+from .permission import IsOwnerOrReadOnly
+
 
 class AddressViewSet(viewsets.ModelViewSet):
     serializer_class = AddressSerializer
