@@ -127,12 +127,15 @@ def listMethodMenu(linked_list: Linked_list, lname: str, position=0):
     return linked_list
 
 def threadMenu(lists, my_target, position = 0):
-    j = 1
+    j, threads = 1, []
     for i in lists:
         thread = threading.Thread(target=my_target, args=(i, 'l'+str(j), position))
         thread.start()
-        thread.join()
+        threads.append(thread)
         j += 1
+    for th in threads:
+        th.join()
+
 
 if __name__ == '__main__':
     main()
