@@ -24,11 +24,9 @@ urlpatterns = [
     path('api/v1/', include('address.urls')),
 
     # Auth
-    # path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    # path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
     path('api/auth/', include('rest_framework.urls')),
     path('auth/', include('djoser.urls')),
-    #path('auth/', include('djoser.urls.jwt')),
+    path('auth/', include('djoser.urls.jwt')),
 
     # Register
     path('account/', include('account.urls')),

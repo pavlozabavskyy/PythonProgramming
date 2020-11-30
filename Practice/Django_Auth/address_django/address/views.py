@@ -1,11 +1,9 @@
-from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework import filters
 from .models import Address
 from .serializers import AddressSerializer
 from .permission import IsOwnerOrReadOnly
-from rest_framework.permissions import IsAuthenticated, AllowAny
-
+from rest_framework.permissions import IsAuthenticated
 
 
 class AddressViewSet(viewsets.ModelViewSet):

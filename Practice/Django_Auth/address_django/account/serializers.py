@@ -1,5 +1,4 @@
-from rest_framework import  serializers
-from rest_framework.permissions import IsAuthenticated
+from rest_framework import serializers
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
@@ -20,7 +19,6 @@ class RegisterSerializer(serializers.ModelSerializer):
                                         last_name=validated_data['last_name'],  
                                         email=validated_data['email'],
                                         password=validated_data['password'])
-        
         return user
 
 # User serializer
