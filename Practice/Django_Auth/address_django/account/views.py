@@ -1,11 +1,13 @@
-from rest_framework import generics, permissions
+from rest_framework import generics
 from rest_framework.response import Response
-from .serializers import RegisterSerializer
-from django.contrib.auth.models import User
+from .serializers import RegisterSerializer, UserSerializer
 from rest_framework.permissions import AllowAny
 
-# Register
-class RegisterApi(generics.GenericAPIView):
+
+class RegisterView(generics.GenericAPIView):
+    """
+    Register view.
+    """
     serializer_class = RegisterSerializer
     permission_classes = (AllowAny, )
     def post(self, request, *args,  **kwargs):

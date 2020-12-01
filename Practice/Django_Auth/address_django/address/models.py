@@ -5,6 +5,9 @@ from django.contrib.auth.models import User
 
 
 class Address(models.Model):
+    """
+    Address model. 
+    """
     address_line = models.CharField(validators=[Validation.symbolValidation], 
                                 max_length=50)    
 

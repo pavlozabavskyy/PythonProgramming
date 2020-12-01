@@ -1,11 +1,13 @@
 from rest_framework import serializers
-from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import make_password
 
-# Register serializer
+
 class RegisterSerializer(serializers.ModelSerializer):
+    """
+    Register serializer.
+    """
     class Meta:
         model = User
         fields = ('id', 'username', 'first_name', 'last_name', 'email', 'password',)
@@ -21,8 +23,10 @@ class RegisterSerializer(serializers.ModelSerializer):
                                         password=validated_data['password'])
         return user
 
-# User serializer
 class UserSerializer(serializers.ModelSerializer):
+    """
+    User serializer.
+    """
     class Meta:
         model = User
         fields = '__all__'
