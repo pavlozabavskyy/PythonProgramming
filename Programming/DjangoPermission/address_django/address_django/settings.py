@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     
     'address',
     'account',
+    'orders',
 
     'rest_framework',
     'rest_framework.authtoken', 
@@ -92,7 +93,6 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
 
     ),
-
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
 }
 
@@ -103,7 +103,7 @@ REST_FRAMEWORK = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'auth_address',
+        'NAME': 'addressorders',
         'USER': 'pasha',
         'PASSWORD': '',
         'HOST': '127.0.0.1',
