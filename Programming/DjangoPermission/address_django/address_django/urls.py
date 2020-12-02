@@ -33,6 +33,10 @@ urlpatterns = [
     # Register
     path('account/', include('account.urls')),
 
+
+    # Orders
+    path('api/v1/', include('orders.urls')),
+
 ]
 
 

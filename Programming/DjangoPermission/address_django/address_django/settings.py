@@ -84,9 +84,6 @@ WSGI_APPLICATION = 'address_django.wsgi.application'
 # Rest framework
 #
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
@@ -103,7 +100,7 @@ REST_FRAMEWORK = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'addressorders',
+        'NAME': 'addorders',
         'USER': 'pasha',
         'PASSWORD': '',
         'HOST': '127.0.0.1',

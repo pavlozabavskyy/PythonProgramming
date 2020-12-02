@@ -30,4 +30,4 @@ class Address(models.Model):
     user = models.ForeignKey(User, verbose_name='User ', 
                                 on_delete=models.CASCADE)
 
-    #stock = models.PositiveIntegerField()
+    amount = models.PositiveIntegerField(default=0)
