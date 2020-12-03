@@ -16,7 +16,9 @@ class OrdersSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         """ Check item amount and order amount. Update him. """
         address = validated_data['item']
-        if validated_data['amount'] > address.amount:
+        if address.amount == 0:
+            raise serializers.ValidationError("Out of stock. ")
+        elif validated_data['amount'] > address.amount:
            validated_data['amount'] = address.amount
 
         # update item
