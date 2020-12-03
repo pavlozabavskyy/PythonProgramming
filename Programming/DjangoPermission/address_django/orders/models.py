@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-import address
+from address.models import Address
 
 
 class Orders(models.Model):
@@ -9,8 +9,8 @@ class Orders(models.Model):
     """
     user = models.ForeignKey(User, verbose_name='User ', on_delete=models.CASCADE)
 
-    item = models.ForeignKey('address.Address', verbose_name='address', on_delete=models.CASCADE)
+    item = models.ForeignKey(Address, verbose_name='address', on_delete=models.CASCADE)
 
-    amount = models.PositiveIntegerField(default=1)
+    amount = models.PositiveIntegerField()
 
     date = models.DateTimeField(verbose_name=('date'), auto_now_add=True)

@@ -44,8 +44,6 @@ INSTALLED_APPS = [
     'orders',
 
     'rest_framework',
-    'rest_framework.authtoken', 
-    'rest_framework_simplejwt',
 
     'djoser',
 ]
@@ -84,12 +82,16 @@ WSGI_APPLICATION = 'address_django.wsgi.application'
 # Rest framework
 #
 REST_FRAMEWORK = {
+    # Auth
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
 
+        # 
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
     ),
+
+    # Pagination
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
 }
 

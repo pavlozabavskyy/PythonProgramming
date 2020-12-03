@@ -7,6 +7,9 @@ from rest_framework.permissions import IsAdminUser
 
 
 class AddressViewSet(viewsets.ModelViewSet):
+    """
+    Address view.
+    """
     serializer_class = AddressSerializer
     queryset = Address.objects.all()
 
@@ -16,3 +19,5 @@ class AddressViewSet(viewsets.ModelViewSet):
     ordering_fields = search_fields
 
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
+
+        
