@@ -18,19 +18,18 @@ from django.urls import path, include
 from rest_framework_simplejwt import views as jwt_views
 
 urlpatterns = [
+    # Admin
     path('admin/', admin.site.urls),
 
-    # Address
-    path('api/v1/', include('modules.address.urls')),
-
     # Auth
-    path('api/auth/', include('rest_framework.urls')),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
 
     # Register
     path('account/', include('modules.account.urls')),
 
+    # Address
+    path('api/v1/', include('modules.address.urls')),
 ]
 
 
