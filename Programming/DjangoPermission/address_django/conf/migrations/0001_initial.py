@@ -7,6 +7,7 @@ import django.db.models.deletion
 import modules.address.validation
 
 
+
 class Migration(migrations.Migration):
 
     initial = True
@@ -30,4 +31,17 @@ class Migration(migrations.Migration):
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='User ')),
             ],
         ),
+
+        migrations.CreateModel(
+            name='Orders',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('amount', models.PositiveIntegerField()),
+                ('date', models.DateTimeField(auto_now_add=True, verbose_name='date')),
+                ('item', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='address.address', verbose_name='address')),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='User ')),
+            ],
+        ),
     ]
+
+
