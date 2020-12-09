@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from address.models import Address
+from modules.address.models import Address
 
 
 class Orders(models.Model):

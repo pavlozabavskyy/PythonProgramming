@@ -20,19 +20,18 @@ from rest_framework_simplejwt import views as jwt_views
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    # Address
-    path('api/v1/', include('address.urls')),
-
     # Auth
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
 
+    # Address
+    path('api/v1/', include('modules.address.urls')),
+
     # Register
-    path('api/v1/', include('account.urls')),
+    path('api/v1/', include('modules.account.urls')),
 
     # Orders
-    path('api/v1/', include('orders.urls')),
-
+    path('api/v1/', include('modules.orders.urls')),
 ]
 
 

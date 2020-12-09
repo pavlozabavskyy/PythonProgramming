@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Orders
-from address.models import Address
+from modules.address.models import Address
 
 
 class OrdersSerializer(serializers.ModelSerializer):
@@ -14,12 +14,13 @@ class OrdersSerializer(serializers.ModelSerializer):
         fields = ('user', 'item', 'amount', 'date')
     
     def create(self, validated_data):
-        """ Check item amount and order amount. Update him. """
+        """ Address amount vs order amount. Update address. """
         address = validated_data['item']
         if address.amount == 0:
-            raise serializers.ValidationError("Out of stock. ")
+            raise serializers.ValidationError("No items left in stock")
         elif validated_data['amount'] > address.amount:
-           validated_data['amount'] = address.amount
+            raise serializers.ValidationError("Available quantity: {}".format(address.ammount))
+           #validated_data['amount'] = address.amount
 
         # update item
         address.amount -= validated_data['amount']
