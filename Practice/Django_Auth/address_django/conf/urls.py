@@ -21,7 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # Address
-    path('api/v1/', include('address.urls')),
+    path('api/v1/', include('modules.address.urls')),
 
     # Auth
     path('api/auth/', include('rest_framework.urls')),
@@ -29,7 +29,7 @@ urlpatterns = [
     path('auth/', include('djoser.urls.jwt')),
 
     # Register
-    path('account/', include('account.urls')),
+    path('account/', include('modules.account.urls')),
 
 ]
 
