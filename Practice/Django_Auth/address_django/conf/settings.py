@@ -43,8 +43,6 @@ INSTALLED_APPS = [
     'account',
 
     'rest_framework',
-    'rest_framework.authtoken', 
-    'rest_framework_simplejwt',
 
     'djoser',
 ]
@@ -59,7 +57,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'address_django.urls'
+ROOT_URLCONF = 'conf.urls'
 
 TEMPLATES = [
     {
@@ -77,14 +75,12 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'address_django.wsgi.application'
+WSGI_APPLICATION = 'conf.wsgi.application'
 
 
 # Rest framework
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
 
